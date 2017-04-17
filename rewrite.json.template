@@ -1,0 +1,85 @@
+{
+    "s.admin@example.com": {
+        "url": "https://activesync.example.com:443/",
+        "device": {
+            "androidc1294214553": {
+                "url": {
+                    "query": [
+                        [
+                            "DeviceType=Android",
+                            "DeviceType=iPad"
+                        ],
+                        [
+                            "DeviceId=androidc1294214553",
+                            "DeviceId=C7UO85119H0Q3RJ0TT6HE7UVCO"
+                        ]
+                    ]
+                },
+                "headers": {
+                    "user-agent": [
+                        [
+                            "Android-Mail/7.3.26.152772569.release",
+                            "Apple-iPad4C2/1404.27"
+                        ]
+                    ]
+                },
+                "command": {
+                    "provision": {
+                        "request_lines": [
+                            [
+                                "   <Model>SAMSUNG-SM-N910A</Model>",
+                                "   <Model>iPad4C2</Model>"
+                            ],
+                            [
+                                "   <OS>Android 6.0.1</OS>",
+                                "   <OS>iOS 10.2.1 14D27</OS>"
+                            ],
+                            [
+                                "   <UserAgent>Android-Mail/7.3.26.152772569.release</UserAgent>",
+                                "   <UserAgent>iOS/10.2.1 (14D27) dataaccessd/1.0</UserAgent>"
+                            ],
+                            [
+                                "   <FriendlyName>SAMSUNG-SM-N910A</FriendlyName>",
+                                "   <FriendlyName>iPad Air</FriendlyName>"
+                            ]
+                        ],
+                        "response_lines": [
+                            [
+                                "     <DevicePasswordEnabled>1</DevicePasswordEnabled>",
+                                "     <DevicePasswordEnabled>0</DevicePasswordEnabled>"
+                            ],
+                            [
+                                "     <DeviceEncryptionEnabled>1</DeviceEncryptionEnabled>",
+                                "     <DeviceEncryptionEnabled>0</DeviceEncryptionEnabled>"
+                            ],
+                            [
+                                "     <RequireDeviceEncryption>1</RequireDeviceEncryption>",
+                                "     <RequireDeviceEncryption>0</RequireDeviceEncryption>"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "OCVU77E6TT7JR3Q0H31158OU7C": {
+                "command": {
+                    "provision": {
+                        "response_lines": [
+                            [
+                                "     <DevicePasswordEnabled>1</DevicePasswordEnabled>",
+                                "     <DevicePasswordEnabled>0</DevicePasswordEnabled>"
+                            ],
+                            [
+                                "     <DeviceEncryptionEnabled>1</DeviceEncryptionEnabled>",
+                                "     <DeviceEncryptionEnabled>0</DeviceEncryptionEnabled>"
+                            ],
+                            [
+                                "     <RequireDeviceEncryption>1</RequireDeviceEncryption>",
+                                "     <RequireDeviceEncryption>0</RequireDeviceEncryption>"
+                            ]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
