@@ -49,9 +49,6 @@ define('debug', default=False, help='Debug', type=bool, group='Application')
 define('listen_port', default=8000, help='Listen Port', type=int, group='HTTP Server')
 define('listen_host', default='localhost', help='Listen Host', type=str, group='HTTP Server')
 
-define('activesync_url', help='ActiveSync Server Protocol', group='HTTP Client')
-define('activesync_host', help='ActiveSync Server Protocol', group='HTTP Client')
-
 define('rewrite_json', default='rewrite.json', help='User based rewrite json configuration file', group='User/Client Management')
 
 ## ┏┓ ┏━┓┏━┓┏━╸╻ ╻┏━┓┏┓╻╺┳┓╻  ┏━╸┏━┓
