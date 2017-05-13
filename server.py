@@ -42,7 +42,7 @@ _ = lambda s: s
 def config_callback(config_path):
     options.parse_config_file(config_path, final=False)
 
-define('config', type=str, help='Path to config file', callback=config_callback, group='Config file')
+define('config', default='server.conf', type=str, help='Path to config file', callback=config_callback, group='Config file')
 
 define('debug', default=False, help='Debug', type=bool, group='Application')
 
@@ -115,16 +115,6 @@ class MicrosoftServerActiveSyncHandler(BaseHandler):
 
                     request_body = wbxml.xml_to_wbxml(request_xml, disable_public_id=True, disable_string_table=True)
 
-        ##if request_body:
-        ##    if 'Content-Type' in self.request.headers:
-        ##        if self.request.headers.get('Content-Type') == 'application/vnd.ms-sync.wbxml':
-        ##            request_unbody = wbxml.wbxml_to_xml(request_body, language=wbxml.WBXML_LANG_ACTIVESYNC, charset=wbxml.WBXML_CHARSET_UTF_8)
-        ##            request_body = wbxml.xml_to_wbxml(request_unbody, disable_public_id=True, disable_string_table=True) ##FIXME: VERIFY FOR ALL PROTOCOLS
-        ##
-        ##            for line in request_unbody.splitlines():
-        ##                tornado.log.app_log.debug('<<<:' + hash + ':' + line)
-
-
         client_request = tornado.httpclient.HTTPRequest(
             url=client_uri,
             headers=client_headers,
@@ -140,23 +130,13 @@ class MicrosoftServerActiveSyncHandler(BaseHandler):
 
         self.set_status(server_response.code, server_response.reason)
 
+
+        ## change this to use Update properly
         for server_header_name, server_header_value in server_response.headers.get_all():
             if server_header_name.lower() in ['content-length']:
                 pass
 
             self.set_header(server_header_name, server_header_value)
-
-        ###tornado.log.gen_log.debug(pprint.pformat(('self.request.headers', list(self.request.headers.get_all()))))
-        ###tornado.log.gen_log.debug(pprint.pformat(('self._headers', list(self._headers.get_all()))))
-
-        ###tornado.log.gen_log.debug(pprint.pformat(('client_request.headers', list(client_request.headers.get_all()))))
-        ###tornado.log.gen_log.debug(pprint.pformat(('client_request.body', client_request.body)))
-        ###tornado.log.gen_log.debug(pprint.pformat(('client_request.method', client_request.method)))
-
-        ###tornado.log.gen_log.debug(pprint.pformat(('server_response.code', server_response.code)))
-        ###tornado.log.gen_log.debug(pprint.pformat(('server_response.reason', server_response.reason)))
-        ###tornado.log.gen_log.debug(pprint.pformat(('server_response.headers', list(server_response.headers.get_all()))))
-        ###tornado.log.gen_log.debug(pprint.pformat(('server_response.body', server_response.body)))
 
         response_body = server_response.body
 
@@ -173,15 +153,7 @@ class MicrosoftServerActiveSyncHandler(BaseHandler):
 
                     response_body = wbxml.xml_to_wbxml(response_xml, disable_public_id=True, disable_string_table=True)
 
-        ##if response_body:
-        ##    if 'Content-Type' in server_response.headers:
-        ##        if server_response.headers.get('Content-Type') == 'application/vnd.ms-sync.wbxml':
-        ##            response_unbody = wbxml.wbxml_to_xml(response_body, language=wbxml.WBXML_LANG_ACTIVESYNC, charset=wbxml.WBXML_CHARSET_UTF_8)
-        ##            for line in response_unbody.splitlines():
-        ##                tornado.log.app_log.debug('>>>:' + hash + ':' + line)
-        ##
-
-        self.write(response_body) ##seems legit.. even if there is none
+            self.write(response_body) ##seems legit.. even if there is none
 
         self.finish()
 
