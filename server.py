@@ -33,7 +33,7 @@ from tornado.options import define
 
 _ = lambda s: s
 
-##tornado.httpclient.AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient")
+tornado.httpclient.AsyncHTTPClient.configure("tornado.curl_httpclient.CurlAsyncHTTPClient")
 
 ## ┏━┓┏━┓╺┳╸╻┏━┓┏┓╻┏━┓
 ## ┃ ┃┣━┛ ┃ ┃┃ ┃┃┗┫┗━┓
@@ -142,6 +142,9 @@ class MicrosoftServerActiveSyncHandler(BaseHandler):
 
         if "Content-Length" in self._headers:
             del self._headers['Content-Length']
+
+        if "Transfer-Encoding" in self._headers:
+            del self._headers['Transfer-Encoding']
 
         if response_body:
             if cmd == 'Provision':
